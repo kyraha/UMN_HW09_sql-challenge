@@ -114,6 +114,7 @@ order by frequency DESC
 -- On your way out of the office, you hear the words, "Search your ID number."
 -- You look down at your badge to see that your employee ID number is 499942.
 select e.*,
+	t.title,
 	d.dept_name,
 	m.first_name||' '||m.last_name as manager_name,
 	s.salary
@@ -123,5 +124,7 @@ left join departments d on d.dept_no = de.dept_no
 left join dept_managers dm on dm.dept_no = d.dept_no
 left join employees m on m.emp_no = dm.emp_no
 left join salaries s on s.emp_no = e.emp_no
+left join titles t on t.title_id = e.emp_title_id
 where e.emp_no = 499942
+or m.emp_no = 499942
 	
