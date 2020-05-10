@@ -108,4 +108,20 @@ group by last_name
 order by frequency DESC
 
 
-
+-- Epilogue
+-- Evidence in hand, you march into your boss's office and present the
+-- visualization. With a sly grin, your boss thanks you for your work.
+-- On your way out of the office, you hear the words, "Search your ID number."
+-- You look down at your badge to see that your employee ID number is 499942.
+select e.*,
+	d.dept_name,
+	m.first_name||' '||m.last_name as manager_name,
+	s.salary
+from employees e
+left join dept_emp de on de.emp_no = e.emp_no
+left join departments d on d.dept_no = de.dept_no
+left join dept_managers dm on dm.dept_no = d.dept_no
+left join employees m on m.emp_no = dm.emp_no
+left join salaries s on s.emp_no = e.emp_no
+where e.emp_no = 499942
+	
